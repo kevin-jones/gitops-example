@@ -6,7 +6,7 @@ metadata:
  name: webapp
  namespace: gitopsexample
 spec:
- replicas: 1
+ replicas: 3
  selector:
    matchLabels:
      app: webapp
@@ -16,13 +16,13 @@ spec:
        app: webapp
    spec:
     containers:
-    - image: ghcr.io/kevin-jones/gitops-example/nginx:0.0.12
+    - image: ghcr.io/kevin-jones/gitops-example/nginx:0.0.13
       imagePullPolicy: Always
       name: nginx
       volumeMounts:
       - mountPath: /etc/nginx/conf.d
         name: nginx-config
-    - image: ghcr.io/kevin-jones/gitops-example/php:0.0.12
+    - image: ghcr.io/kevin-jones/gitops-example/php:0.0.13
       imagePullPolicy: Always
       name: php
     volumes:

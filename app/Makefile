@@ -14,6 +14,8 @@ push: build
 
 compile:
 	export BUILD_VERSION=${BUILD_VERSION}; cat ../k8s/deployment.yml | envsubst > ../k8s-dist/deployment.yml
+	cp ../k8s/configmap.yml ../k8s-dist
+	cp ../k8s/service.yml ../k8s-dist
 
 build:
 	docker build -t ghcr.io/kevin-jones/gitops-example/nginx:${BUILD_VERSION} -f docker/nginx/Dockerfile .
