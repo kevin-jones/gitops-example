@@ -1,5 +1,8 @@
 <?php
-$version = '0.0.2';
+
+require 'bootstrap.php';
+
+$version = getenv('BUILD_VERSION');
 ?>
 <!doctype html>
 <html lang="en">
