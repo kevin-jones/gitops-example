@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  namespace: gitopsexample
+spec:
+  selector:
+    app: webapp
+  ports:
+  - name: nginx80
+    protocol: TCP
+    port: 80
+    targetPort: 80

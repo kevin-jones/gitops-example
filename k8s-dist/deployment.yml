@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ labels:
+   app: webapp
+ name: webapp
+ namespace: gitopsexample
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: webapp
+ template:
+   metadata:
+     labels:
+       app: webapp
+   spec:
+    containers:
+    - image: ghcr.io/kevin-jones/gitops-example/nginx:0.0.6
+      imagePullPolicy: Always
+      name: nginx
+      volumeMounts:
+      - mountPath: /etc/nginx/conf.d
+        name: nginx-config
+    - image: ghcr.io/kevin-jones/gitops-example/php:0.0.6
+      imagePullPolicy: Always
+      name: php
+    volumes:
+     - name: nginx-config
+       configMap:
+         name: nginx-config
+         items:
+         - key: config
+           path: default.conf
