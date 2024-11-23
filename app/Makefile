@@ -2,8 +2,6 @@ include .env
 
 deploy: push compile
 	@echo "Ready to deploy..."
-	git config user.name "CI Automation"
-	git config user.email "ci@example.com"
 	git commit -am "Updated deployment to version ${BUILD_VERSION}"
 	git push
 
