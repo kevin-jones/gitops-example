@@ -1,4 +1,4 @@
 FROM nginx
 WORKDIR /webapp
-COPY ./src/ .
+COPY ./src/ public/
 COPY .env .
