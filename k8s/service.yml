@@ -7,7 +7,7 @@ spec:
   selector:
     app: webapp
   ports:
-  - name: nginxPublic80
+  - name: nginx80
     protocol: TCP
     port: 80
     targetPort: 80

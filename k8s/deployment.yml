@@ -23,3 +23,10 @@ spec:
         name: nginx-config
     - image: ghcr.io/kevin-jones/gitops-example/php:latest
       name: php
+    volumes:
+     - name: nginx-config
+       configMap:
+         name: nginx-config
+         items:
+         - key: config
+           path: default.conf
