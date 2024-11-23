@@ -60,8 +60,8 @@ with a version number and pushed up to the registry. This same version number
 should be referenced in the k8s/deployment.yml file. This will make Argo CD
 automatically pull in the latest image and put the new version of the app live.
 
-In our example app we're using the tag :latest for simplicity and to avoid
-having to bump our version numbers each time we make a change. However, just
+If using the tag :latest for simplicity (which may be preferable to avoid
+having to bump our version numbers each time we make a change) - be aware, just
 like normal Kubernetes, Argo won't pull in the :latest image if it has already
 been cached. To force the new images to be used, the pod must be deleted. This
 will trigger a replacement pod to be created, and with this config:
@@ -74,6 +74,10 @@ imagePullPolicy: Always
 
 To delete the pod in Argo CD, click your application, then click the ellipsis icon
 on the pod, then "delete".
+
+Otherwise, if you bump the version numbers and push a new tag to the registry
+then Argo will automatically refresh the pod with all of the latest code and
+config.
 
 ## Accessing the app in your browser
 
