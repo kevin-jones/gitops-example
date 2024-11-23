@@ -1,6 +1,6 @@
 include .env
 
-push:
+push: build
 	echo ${CR_PAT} | docker login ghcr.io -u kevin-jones --password-stdin
 	docker push ghcr.io/kevin-jones/gitops-example/nginx:latest
 	docker push ghcr.io/kevin-jones/gitops-example/php:latest
