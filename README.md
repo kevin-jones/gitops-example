@@ -47,5 +47,34 @@ Building the docker images must begin in the "app" as the root context in
 order for the Dockerfiles which are in sub-folders to access the application
 src folder.
 
+When the application source code changes, in order to deploy this in to the
+Kubernetes cluster, the following process must be followed:
 
+1. Commit and push latest source code to the Git repo
+2. Build new docker images for the nginx and php containers
+3. Push the new images up to the Github Container Registry (ghcr.io)
+4. Trigger a "sync" in Argo CD
 
+In a production environment, each version of the application should be tagged
+with a version number and pushed up to the registry. This same version number
+should be referenced in the k8s/deployment.yml file. This will make Argo CD
+automatically pull in the latest image and put the new version of the app live.
+
+In our example app we're using the tag :latest for simplicity and to avoid
+having to bump our version numbers each time we make a change. However, just
+like normal Kubernetes, Argo won't pull in the :latest image if it has already
+been cached. To force the new images to be used, the pod must be deleted. This
+will trigger a replacement pod to be created, and with this config:
+
+```yml
+imagePullPolicy: Always
+```
+
+...the :latest tag will be re-downloaded whenever a new pod is created!
+
+To delete the pod in Argo CD, click your application, then click the ellipsis icon
+on the pod, then "delete".
+
+## Accessing the app in your browser
+
+Navigate to http://nginx-service.gitopsexample.svc.cluster.local/
