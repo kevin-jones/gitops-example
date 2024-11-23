@@ -4,6 +4,7 @@ metadata:
  labels:
    app: webapp
  name: webapp
+ namespace: gitopsexample
 spec:
  replicas: 1
  selector:

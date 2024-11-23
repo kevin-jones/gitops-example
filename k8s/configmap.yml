@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: nginx-config
+  namespace: gitopsexample
 data:
   config : |
     server {

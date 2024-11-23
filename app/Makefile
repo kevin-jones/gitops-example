@@ -1,5 +1,4 @@
 include .env
-.PHONY: fish
 
 push:
 	echo ${CR_PAT} | docker login ghcr.io -u kevin-jones --password-stdin
