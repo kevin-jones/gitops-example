@@ -7,5 +7,5 @@ jobs:
         uses: actions/delete-package-versions@v5
         with: 
           package-name: 'gitops-example/nginx'
-          package-type: 'npm'
+          package-type: 'container'
           min-versions-to-keep: 5
