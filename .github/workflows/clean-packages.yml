@@ -1,0 +1,11 @@
+on: [push]
+jobs:
+  cleanse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete Package Versions
+        uses: actions/delete-package-versions@v5
+        with: 
+          package-name: 'gitops-example/nginx'
+          package-type: 'npm'
+          min-versions-to-keep: 5
